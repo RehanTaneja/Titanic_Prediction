@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Survival Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Titanic Survival Prediction</h1>
+    <form method="POST" action="/predict">
+        <label for="passenger_id">Passenger ID:</label>
+        <input type="number" id="passenger_id" name="passenger_id" placeholder="Enter Passenger ID" min="1" required>
+        
+        <label for="fare">Fare:</label>
+        <input type="number" id="fare" name="fare" step="0.01" placeholder="Enter Fare" min="0" required>
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" placeholder="Enter Age" min="0" required>
+        
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+            <option value="" disabled selected>Select Sex</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        
+        <label for="pclass">Passenger Class:</label>
+        <select id="pclass" name="pclass" required>
+            <option value="" disabled selected>Select Class</option>
+            <option value="1">1st Class</option>
+            <option value="2">2nd Class</option>
+            <option value="3">3rd Class</option>
+        </select>
+        
+        <label for="sibsp">Siblings/Spouses Aboard:</label>
+        <input type="number" id="sibsp" name="sibsp" placeholder="Enter Number" min="0" required>
+        
+        <label for="parch">Parents/Children Aboard:</label>
+        <input type="number" id="parch" name="parch" placeholder="Enter Number" min="0" required>
+        
+        <label for="embarked">Embarked:</label>
+        <select id="embarked" name="embarked" required>
+            <option value="" disabled selected>Select Embarkation Port</option>
+            <option value="1">Cherbourg (C)</option>
+            <option value="2">Queenstown (Q)</option>
+            <option value="3">Southampton (S)</option>
+        </select>
+        
+        <button type="submit">Predict</button>
+    </form>
+    
+    {% if result %}
+    <div id="result">
+        <h2>Result: {{ result }}</h2>
+    </div>
+    {% endif %}
+</body>
+</html>
